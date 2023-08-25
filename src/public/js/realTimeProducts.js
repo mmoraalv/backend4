@@ -24,6 +24,7 @@ socket.on('products', products => {
       <p>Status: ${prod.status}</p>
       <p>Code: ${prod.code}</p>
       <p>Stock: ${prod.stock}</p>
+      <p>Stock: ${prod.category}</p>
     </div>
 		`;
 	});
