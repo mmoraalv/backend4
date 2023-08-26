@@ -9,20 +9,21 @@ export class ProductManager {
 
 	async addProduct(product) {
 		this.products = JSON.parse(await fs.readFile(this.path, 'utf-8'));
-		const { title, description, price, code, stock, status, category, thumbnails } = product;
+		const { title, description, price, code, stock, status, category } = product;
 
-		if (!title || !description || !price || !status || !code || !stock || !category || !thumbnails) {
+		if (!title || !description || !price || !status || !code || !stock || !category) {
 			console.log(
-				'El producto debe incluir los campos title, description, price, status, code, stock, category y thumbnails'
+				'El producto debe incluir los campos title, description, price, status, code, stock y category'
 			);
 			return;
 		}
 
+		product.id = uuidv4();
 		const prodExists = this.products.find(element => element.code === code);
+
 		if (prodExists) {
 			return false;
 		} else {
-			product.id = uuidv4();
 			product.status = true;
 			this.products.push(product);
 		}
